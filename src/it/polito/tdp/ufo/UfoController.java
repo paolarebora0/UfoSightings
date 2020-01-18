@@ -1,11 +1,12 @@
 /**
+ /**
  * Sample Skeleton for 'Ufo.fxml' Controller Class
  */
 
 package it.polito.tdp.ufo;
 
 import java.net.URL;
-import java.util.List;
+import java.time.Year;
 import java.util.ResourceBundle;
 
 import it.polito.tdp.ufo.model.AnnoCount;
@@ -35,50 +36,31 @@ public class UfoController {
 
     @FXML
     void handleAnalizza(ActionEvent event) {
-    	String stato = boxStato.getValue();
-    	if(stato == null) {
-    		txtResult.appendText("Devi selezionare uno stato!");
-    		return;
-    	}
-    	List<String> predecessori = this.model.getPredecessori(stato);
-    	List<String> successori = this.model.getSuccessori(stato);
-    	List<String> raggiungibili = this.model.getRaggiungibili(stato);
-    	
-    	txtResult.clear();
-    	
-    	txtResult.appendText("Predecessori: ");
-    	for(String s: predecessori)
-    		txtResult.appendText(s+ "   ");
-    	
-    	txtResult.appendText("\nSuccessori: ");
-    	for(String s: successori)
-    		txtResult.appendText(s+ "  ");
-    	
-    	txtResult.appendText("\nRaggiungibili: ");
-    	for(String s: raggiungibili)
-    		txtResult.appendText(s+ "  ");
-    	
+
     }
 
     @FXML
     void handleAvvistamenti(ActionEvent event) {
+
     	AnnoCount anno = boxAnno.getValue();
     	if(anno == null) {
     		txtResult.appendText("Devi selezionare un anno!");
     		return;
     	}
+    	
     	this.model.creaGrafo(anno.getYear());
-    	txtResult.appendText("Grafo creato!");
-    	txtResult.appendText("\nNumero vertici: "+this.model.getNVertici());
-    	txtResult.appendText("\nNumero archi: "+this.model.getNArchi());
+    	txtResult.appendText("Grafo creato");
+    	txtResult.appendText("\n#vertici: "+this.model.getNVertici());
+    	txtResult.appendText("\n#archi: "+this.model.getNArchi());
     	
     	this.boxStato.getItems().addAll(this.model.getStati());
+
     }
 
     @FXML
     void handleSequenza(ActionEvent event) {
 
-    	
+    	String stato = boxStato.getValue();
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
@@ -90,7 +72,7 @@ public class UfoController {
     }
     
     public void setModel(Model model) {
-		this.model = model;
-		this.boxAnno.getItems().addAll(this.model.getAnni());
-	}
+    	this.model = model;
+    	this.boxAnno.getItems().addAll(this.model.getAnni());
+    }
 }

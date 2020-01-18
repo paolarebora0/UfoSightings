@@ -3,8 +3,10 @@ package it.polito.tdp.ufo.model;
 import java.time.Year;
 
 public class AnnoCount {
+
 	private Year year;
 	private Integer count;
+	
 	
 	public AnnoCount(Year year, Integer count) {
 		super();
@@ -27,9 +29,8 @@ public class AnnoCount {
 
 	@Override
 	public String toString() {
-		return year +" ("+count+")";
+		return year + " (" + count + ")";
 	}
 	
-	
-	
+	//Non serve HashCode ed Equals
 }

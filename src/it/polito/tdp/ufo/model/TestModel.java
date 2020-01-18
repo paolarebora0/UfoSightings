@@ -4,7 +4,6 @@ import java.time.Year;
 
 public class TestModel {
 
-	
 	public void run() {
 		Model model = new Model();
 		model.creaGrafo(Year.of(2010));
